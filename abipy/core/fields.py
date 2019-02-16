@@ -1050,6 +1050,17 @@ class VksPotential(_PotentialField):
     latex_label = "vks $[eV/A^3]$"
 
 
+class _NLPotentialField(_Field):
+    """Semi local potentials"""
+
+class Vemb(_NLPotentialField): 
+    """
+    embedding potential
+    """
+    netcdf_name = "vemb"
+    latex_label = "vemb $[a.u.]$"
+
+
 class FieldReader(ETSF_Reader):
     """
     This object reads density data from a netcdf file.
@@ -1100,6 +1111,10 @@ class FieldReader(ETSF_Reader):
 
     def read_vks(self, field_cls=VksPotential):
         """Read potential data. Return :class:`VksPotential` object."""
+        return self.read_denpot(varname=field_cls.netcdf_name, field_cls=field_cls)
+
+    def read_vemb(self, field_cls=Vemb):
+        """Read embedding potential data."""
         return self.read_denpot(varname=field_cls.netcdf_name, field_cls=field_cls)
 
     def read_denpot(self, varname, field_cls):
@@ -1161,6 +1176,8 @@ class FieldReader(ETSF_Reader):
             fact = 1 / pmgu.bohr_to_angstrom ** 3
         if issubclass(field_cls, _PotentialField):
             fact = pmgu.Ha_to_eV / pmgu.bohr_to_angstrom ** 3
+        if issubclass(field_cls, _NLPotentialField):
+            fact = 1.0
 
         datar *= fact
 

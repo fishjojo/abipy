@@ -51,7 +51,7 @@ from abipy.electrons.gw import SigresFile, SigresRobot
 from abipy.electrons.bse import MdfFile, MdfRobot
 from abipy.electrons.scissors import ScissorsBuilder
 from abipy.electrons.scr import ScrFile
-from abipy.electrons.denpot import (DensityNcFile, VhartreeNcFile, VxcNcFile, VhxcNcFile, PotNcFile,
+from abipy.electrons.denpot import (DensityNcFile, VhartreeNcFile, VxcNcFile, VhxcNcFile,VembNcFile, PotNcFile,
     DensityFortranFile, Cut3dDenPotNcFile)
 from abipy.electrons.fatbands import FatBandsFile
 from abipy.electrons.optic import OpticNcFile, OpticRobot
@@ -114,6 +114,7 @@ abiext2ncfile = collections.OrderedDict([
     ("VHA.nc", VhartreeNcFile),
     ("VXC.nc", VxcNcFile),
     ("VHXC.nc", VhxcNcFile),
+    ("VEMB.nc", VembNcFile),
     ("POT.nc", PotNcFile),
     ("WFK.nc", WfkFile),
     ("HIST.nc", HistFile),

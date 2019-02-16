@@ -23,6 +23,7 @@ __all__ = [
     "VxcNcFile",
     "VhxcNcFile",
     "PotNcFile",
+    "VembNcFile",
 ]
 
 
@@ -252,6 +253,19 @@ class VxcNcFile(_NcFileWithField):
     def vxc(self):
         """XC potential."""
         return self.reader.read_vxc()
+
+
+class VembNcFile(_NcFileWithField):
+    """
+    .. rubric:: Inheritance Diagram
+    .. inheritance-diagram:: VembNcFile
+    """
+    field_name = "vemb"
+
+    @lazy_property
+    def vemb(self):
+        """embedding potential."""
+        return self.reader.read_vemb()
 
 
 class VhxcNcFile(_NcFileWithField):
